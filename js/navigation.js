@@ -2,10 +2,11 @@ const navigationScript = document.currentScript;
 const siteRoot = new URL("../", navigationScript.src);
 
 const routes = [
+  { path: "profile/", label: "Oscar Storm" },
   { path: "boids/", label: "boids" },
   { path: "goat-game/", label: "goat_game" },
   { path: "worm/", label: "worm" },
-  { path: "profile/", label: "profile" },
+  { path: "particles/", label: "particles" },
 ];
 
 function normalizePath(pathname) {

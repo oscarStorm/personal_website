@@ -136,3 +136,6 @@ dist
 /.agents/skills/
 /skills-lock.json
 /ANALYTICS_SETUP.md
+
+# Rust build cache (the browser WASM and runtime in particles/ are deployed)
+/rust/particle-system/target/

@@ -1,23 +1,56 @@
 const profileTyping = document.getElementById("profile-typing");
 
 const profileLines = [
-"My name is Oscar Storm, and I'm a Computer Science student.",
-"I live in Frederiksberg with my girlfriend and our son, who just turned 7!",
+"My name is Oscar Storm, and I'm a Computer Science student at Zealand.",
+"I'm particularly interested in backend development, systems programming, low-level programming and Linux.",
 "",
-"I'm interested in every part of the tech stack, from top to bottom.",
-"Not just how the different layers fit together, but how the technology actually works — from hardware to software.",
-"I started tinkering with an old thinkpad t420 about a year ago, and got it running Arch Linux",
-"Before long - all my machines where running Arch, couldent help myself.",
+"Outside my studies, I work on independent software projects to deepen my understanding of software architecture, algorithms, and how systems work under the hood.",
+"Technologies I've worked with include:",
+"Python, JavaScript, SQL, Java, C#, Rust, Docker, Bash and Linux",
 "",
-"I think the entire IT industry is evolving rapidly with the rise of AI, and it's exciting to be along for the ride.",
-"To gain hands-on experience with agentic coding, I've set up an open-source local AI environment.",
-"My current setup uses Gemma and Hermes as the agent harness.",
+"Projects:",
+"1.",
+"This website is built with vanilla JavaScript. The boids and worm simulations are written in pure JavaScript.",
+"The boids page explore a flocking algorithm.",
+"The worm page explore procedural animation using inverse kinematics.",
+"It uses WASM to run the Godot game and WebGL to render the graphics.",
+"The site also has a serverless analytics backend that stores visitor data in a Neon PostgreSQL database.",
+{
+  prefix: "",
+  text: "Personal website",
+  href: "https://github.com/oscarStorm/personal_website",
+  external: true
+},
+"2.",
+"I built two implementations of the same booking system, one backend-heavy and one database-heavy, and compared their performance through latency testing.",
+"The goal was to better understand where business logic should live and the trade-offs between the two architectural approaches.",
+"The conclusion? It depends.",
+"Implemented with Python and MySQL.",
+{
+  prefix: "",
+  text: "Backend heavy system",
+  href: "https://github.com/oscarStorm/backend_heavy",
+  external: true
+},
+{
+  prefix: "",
+  text: "Database heavy system",
+  href: "https://github.com/oscarStorm/database_heavy",
+  external: true
+},
+"3.",
+"A particle simulation built in Rust as a self-learning project to explore systems programming and improve my understanding of the language",
+"I've included it as one of the simulations on the site - it's under particles",
+{
+  prefix: "",
+  text: "Rust particle system",
+  href: "https://github.com/oscarStorm/particle_system_RUST",
+  external: true
+},
 "",
-"I enjoy playing chess and building personal projects, some of which are public on GitHub.",
-"I also enjoy playing tennis, and i'm contemplating taking up sea-kayaking",
+"Outside of studies, I enjoy playing tennis and chess and tinkering with my arch-config",
 "",
-"I'm currently looking for opportunities in the IT industry and encourage employers to reach out if they think I could be a good fit.",
-"",
+"I'm currently looking for student positions in software development, particularly within backend and systems development.",
 "Contact information:",
 {
   prefix: "Email: ",
@@ -33,8 +66,8 @@ const profileLines = [
 "Phone: +45 53535623"
 ];
 
-const characterDelay = 20;
-const delayBetweenLines = 600;
+const characterDelay = 1;
+const delayBetweenLines = 1;
 
 let lineIndex = 0;
 let characterIndex = 0;
@@ -74,8 +107,8 @@ function typeProfile() {
 
   const line = profileLines[lineIndex];
   const text = typeof line === "string" ? line : line.text;
-  typingTarget.textContent = text.substring(0, characterIndex + 1);
-  characterIndex += 1;
+  characterIndex = Math.min(characterIndex + 2, text.length);
+  typingTarget.textContent = text.substring(0, characterIndex);
 
   if (characterIndex < text.length) {
     setTimeout(typeProfile, characterDelay);

@@ -1,0 +1,14 @@
+[package]
+name = "particle-system-web"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+macroquad = "=0.4.16"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true
