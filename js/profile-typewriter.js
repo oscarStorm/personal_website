@@ -48,7 +48,7 @@ const profileLines = [
   external: true
 },
 "",
-"Outside of studies, I enjoy playing tennis and chess and tinkering with my arch-config",
+"Outside of studies, I enjoy playing tennis, chess and tinkering with my arch-config",
 "",
 "I'm currently looking for student positions in software development, particularly within backend and systems development.",
 "Contact information:",
