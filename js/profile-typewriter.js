@@ -39,7 +39,7 @@ const profileLines = [
   external: true
 },
 "3.",
-"A particle simulation built in Rust as a self-learning project to explore systems programming and improve my understanding of the language",
+"A particle simulation built in Rust as a self-learning project to explore systems programming and improve my understanding of the language.",
 "I've included it as one of the simulations on the site - it's under particles",
 {
   prefix: "",
