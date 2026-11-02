@@ -3,7 +3,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: black;
+    background: #343f44;
 }
 
 canvas {
@@ -43,8 +43,8 @@ canvas {
 
 .route-nav a {
     padding: 8px 12px;
-    color: rgb(1, 1, 1);
-    background: rgb(235 202 40 / 60%);
+    color: #FDF0D5;
+    background: #e69875;
     border: 1px solid rgb(255 255 255 / 45%);
     border-radius: 6px;
     font: 600 14px/1 sans-serif;
@@ -60,11 +60,77 @@ canvas {
 }
 
 .profile-document {
-    box-sizing: border-box;
-    min-height: 100vh;
-    padding: 96px clamp(24px, 6vw, 80px) 40px;
-    color: white;
-    font-family: sans-serif;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 96px clamp(24px, 6vw, 80px) 40px;
+  color: #a7c080;
+  font-family: sans-serif;
+
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.projects {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.profile-header {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.profile-contact{
+color: #7fbbb3;
+}
+
+.project-heading {
+  color: #e67e80;
+  font-size: 24px;
+  margin: 32px 0 12px;
+}
+
+.simulation1-heading {
+  position: fixed;
+  top: 72px;
+  right: 24px;
+  z-index: 2;
+  width: min(380px, calc(100vw - 48px));
+  color: white;
+  font-family: sans-serif;
+  line-height: 1.6;
+  background: rgb(0 0 0 / 70%);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.simulation1-heading h1 {
+  margin: 0 0 12px;
+  font-size: 24px;
+}
+
+.simulation1-heading p {
+  margin: 0 0 12px;
+}
+
+.simulation1-heading p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-contact a {
+    color:inherit;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 48px;
+}
+
+.profile-intro {
+  max-width: 500px;
 }
 
 .profile-page {
@@ -85,7 +151,7 @@ canvas {
 }
 
 .profile-link {
-    color: rgb(235 202 40);
+    color: #7fbbb3;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
 }
@@ -99,6 +165,8 @@ canvas {
     content: "|";
     animation: blink 1.5s infinite;
 }
+
+
 
 
 #typing {

@@ -249,7 +249,7 @@ class Vector {
               Math.PI * 2
           );
 
-          context.fillStyle = "white";
+          context.fillStyle = "#d699b6";
           context.fill();
       }
   }
@@ -352,7 +352,7 @@ class Vector {
       const frameScale = deltaSeconds * 60;
       lastFrameTime = timestamp;
 
-      context.fillStyle = "black";
+      context.fillStyle = "#343f44";
       context.fillRect(
           0,
           0,

@@ -83,9 +83,9 @@
     }
 
     display(ctx) {
-      ctx.beginPath();
-      ctx.arc(this.pos.x, this.pos.y, this.diam / 2, 0, Math.PI * 2);
-      ctx.fill();
+	ctx.beginPath();
+	ctx.arc(this.pos.x, this.pos.y, this.diam / 2, 0, Math.PI * 2);
+	ctx.fill();
     }
 
     update(frameScale) {
@@ -164,8 +164,8 @@
 
     display(ctx) {
       //ctx.strokeStyle = "rgb(0, 0, 0)";
-      ctx.fillStyle = "rgb(230, 238, 214)";
-      ctx.lineWidth = 4;
+	ctx.fillStyle = "#d699b6";
+	ctx.lineWidth = 4;
 
       for (let i = 0; i < this.segments.length - 1; i += 1) {
         const current = this.segments[i].pos;
@@ -252,7 +252,7 @@
   }
 
   function drawBackground() {
-    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.fillStyle = "#343f44";
     ctx.fillRect(0, 0, width, height);
   }
 
