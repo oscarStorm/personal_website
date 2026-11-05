@@ -51,7 +51,11 @@ const profileLines = [
   className: "project-heading"
 },
 "A particle simulation built in Rust as a self-learning project to explore systems programming and improve my understanding of the language.",
-"I've included it as one of the simulations on the site - it's under particles.",
+{
+  prefix: "",
+  text: "Try the particle simulation",
+  href: "../particles/"
+},
 {
   prefix: "",
   text: "Rust particle system",
