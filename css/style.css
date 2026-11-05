@@ -51,7 +51,7 @@ canvas {
 .route-nav summary {
     display: block;
     padding: 10px 12px;
-    color: #FDF0D5;
+    color: #3d484d;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -78,7 +78,7 @@ canvas {
 .route-nav a[aria-current="page"],
 .route-nav .nav-section-current,
 .route-nav details[open] > summary {
-    background: #7fbbb3;
+    background: #e67e80;
 }
 
 .route-nav a:focus-visible,
