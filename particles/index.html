@@ -6,14 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Particles — Oscar</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="./particles.css">
     <script src="../js/navigation.js" defer></script>
 </head>
 <body>
     <canvas id="glcanvas" tabindex="0" aria-label="Particle collision simulation. R resets particles, S fires from the left, K fires from the right."></canvas>
     <site-navigation></site-navigation>
-    <p class="particle-help">Click the simulation to focus · <kbd>R</kbd> reset · <kbd>S</kbd> fire left · <kbd>K</kbd> fire right</p>
-    <p id="particle-status" role="status">Loading Rust simulation…</p>
+    <header class="simulation1-heading">
+	<h1>
+	    Particle simulation
+	</h1>
+	<p>
+	    A particle simulation written in Rust. Particles spawn with random
+	    positions, velocities and sizes, with larger particles assigned
+	    greater mass. They exchange momentum when they collide and lose
+	    kinetic energy during collisions with each other and the walls.
+	</p>
+
+	<p>Click the simulation to focus · <kbd>R</kbd> reset · <kbd>S</kbd> fire left · <kbd>K</kbd> fire right</p>
+
+    </header>
     <script src="./mq_js_bundle.js"></script>
     <script src="./loader.js"></script>
 </body>

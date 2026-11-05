@@ -96,17 +96,16 @@ class Vector {
       }
 
       edges() {
-          if (this.position.x > this.canvas.width) {
-              this.position.x = 0;
-          } else if (this.position.x < 0) {
-              this.position.x = this.canvas.width;
-          }
+          // Preserve overshoot when crossing a boundary.
+          this.position.x = wrapCoordinate(this.position.x, this.canvas.width);
+          this.position.y = wrapCoordinate(this.position.y, this.canvas.height);
+      }
 
-          if (this.position.y > this.canvas.height) {
-              this.position.y = 0;
-          } else if (this.position.y < 0) {
-              this.position.y = this.canvas.height;
-          }
+      displacementTo(other) {
+          return new Vector(
+              wrappedDifference(other.position.x - this.position.x, this.canvas.width),
+              wrappedDifference(other.position.y - this.position.y, this.canvas.height)
+          );
       }
 
       align(boids) {
@@ -115,10 +114,8 @@ class Vector {
           let total = 0;
 
           for (const other of boids) {
-              const distance = distanceBetween(
-                  this.position,
-                  other.position
-              );
+              const offset = this.displacementTo(other);
+              const distance = offset.magnitude();
 
               if (
                   other !== this &&
@@ -145,30 +142,29 @@ class Vector {
           let total = 0;
 
           for (const other of boids) {
-              const distance = distanceBetween(
-                  this.position,
-                  other.position
-              );
+              const offset = this.displacementTo(other);
+              const distance = offset.magnitude();
 
               if (
                   other !== this &&
                   distance > 0 &&
                   distance < visionRadius
               ) {
-                  const difference = Vector.subtract(
-                      this.position,
-                      other.position
-                  );
-
-                  difference.divide(distance * distance);
-
-                  steering.add(difference);
+                  // Weight each away vector by inverse distance. Nearby
+                  // neighbours contribute more to the desired escape heading.
+                  offset.multiply(-1 / (distance * distance));
+                  steering.add(offset);
                   total++;
               }
           }
 
           if (total > 0) {
               steering.divide(total);
+              if (steering.magnitude() < 1e-10) {
+                  return new Vector();
+              }
+              // Match the other rules: desired velocity minus current
+              // velocity, capped to a steering acceleration.
               steering.setMagnitude(this.maxSpeed);
               steering.subtract(this.velocity);
               steering.limit(this.maxForce);
@@ -183,23 +179,23 @@ class Vector {
           let total = 0;
 
           for (const other of boids) {
-              const distance = distanceBetween(
-                  this.position,
-                  other.position
-              );
+              const offset = this.displacementTo(other);
+              const distance = offset.magnitude();
 
               if (
                   other !== this &&
                   distance < visionRadius
               ) {
-                  steering.add(other.position);
+                  steering.add(offset);
                   total++;
               }
           }
 
           if (total > 0) {
               steering.divide(total);
-              steering.subtract(this.position);
+              if (steering.magnitude() < 1e-10) {
+                  return new Vector();
+              }
               steering.setMagnitude(this.maxSpeed);
               steering.subtract(this.velocity);
               steering.limit(this.maxForce);
@@ -261,11 +257,12 @@ class Vector {
       );
   }
 
-  function distanceBetween(first, second) {
-      return Math.hypot(
-          first.x - second.x,
-          first.y - second.y
-      );
+  function wrapCoordinate(value, size) {
+      return size > 0 ? ((value % size) + size) % size : 0;
+  }
+
+  function wrappedDifference(value, size) {
+      return size > 0 ? wrapCoordinate(value + size / 2, size) - size / 2 : value;
   }
 
   const canvas = document.querySelector("#boid-canvas");
@@ -369,17 +366,23 @@ class Vector {
       const cohesionWeight =
           Number(cohesionSlider.value);
 
+      // Every force must read the same positions and velocities.
       for (const boid of boids) {
           boid.edges();
+      }
 
+      for (const boid of boids) {
           boid.flock(
               boids,
               separationWeight,
               alignmentWeight,
               cohesionWeight
           );
+      }
 
+      for (const boid of boids) {
           boid.update(frameScale);
+          boid.edges();
           boid.show(context);
       }
   }

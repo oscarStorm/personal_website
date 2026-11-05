@@ -37,26 +37,73 @@ canvas {
     right: 16px;
     z-index: 3;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
-    gap: clamp(8px, 2vw, 24px);
-}
-
-.route-nav a {
-    padding: 8px 12px;
-    color: #FDF0D5;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     background: #e69875;
     border: 1px solid rgb(255 255 255 / 45%);
-    border-radius: 6px;
-    font: 600 14px/1 sans-serif;
+    font: 600 14px/1.2 sans-serif;
+}
+
+.route-nav > * + * {
+    border-left: 1px solid rgb(255 255 255 / 45%);
+}
+
+.route-nav a,
+.route-nav summary {
+    display: block;
+    padding: 10px 12px;
+    color: #FDF0D5;
     text-align: center;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.route-nav summary {
+    list-style: none;
+}
+
+.route-nav summary::-webkit-details-marker {
+    display: none;
+}
+
+.route-nav summary::after {
+    content: " ▾";
+}
+
+.route-nav details[open] > summary::after {
+    content: " ▴";
 }
 
 .route-nav a:hover,
+.route-nav summary:hover,
+.route-nav a[aria-current="page"],
+.route-nav .nav-section-current,
+.route-nav details[open] > summary {
+    background: #7fbbb3;
+}
+
 .route-nav a:focus-visible,
-.route-nav a[aria-current="page"] {
-    background: rgb(255 255 255 / 16%);
-    outline: none;
+.route-nav summary:focus-visible {
+    background: #7fbbb3;
+    outline: 2px solid #FDF0D5;
+    outline-offset: -3px;
+}
+
+.nav-dropdown {
+    position: relative;
+    min-width: 0;
+}
+
+.nav-menu {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    background: #e69875;
+    border: 1px solid rgb(255 255 255 / 45%);
+}
+
+.nav-menu a + a {
+    border-top: 1px solid rgb(255 255 255 / 45%);
 }
 
 .profile-document {
@@ -213,4 +260,19 @@ color: #7fbbb3;
     50% {
         opacity: 0;
     }
+}
+
+#glcanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    touch-action: none;
+}
+
+#particle-status {
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
 }

@@ -11,6 +11,24 @@
     <title>Worm</title>
 </head>
 <body>
+    <header class="simulation1-heading">
+        <h1>Procedural Animation</h1>
+	<p>
+	This worm uses inverse kinematics to animate a chain of connected joints.
+	The head follows a moving target, while the body follows using the forward-reaching phase of
+	FABRIK (Forward And Backward Reaching Inverse Kinematics).
+	</p>
+
+	<p>
+	Each joint maintains a fixed distance from the one ahead, creating smooth, coordinated movement.
+	</p>
+
+	<p>
+	The target automatically steers away from screen boundaries, causing the chain to continuously adjust its shape and direction.
+	The resulting motion emerges from simple geometric constraints rather than predefined animation frames.
+	</p>
+
+   </header>
     <canvas id="simulation-canvas"></canvas>
     <site-navigation></site-navigation>
 </body>
